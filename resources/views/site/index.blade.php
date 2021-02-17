@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="{{ app()->getLocale() }}">
 <head>
-    
+
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -57,7 +57,7 @@
                     <div>
                         <div class="pt-md-3 d-flex justify-content-center align-items-center">
                             <img src="/img/pixelfed-icon-color.svg" loading="lazy" width="50px" height="50px">
-                            <span class="font-weight-bold h3 ml-2 pt-2">Pixelfed</span>
+                            <span class="font-weight-bold h3 ml-2 pt-2" style="color: #6a1ae8;">Contrariamente</span>
                         </div>
                         <div class="d-block d-md-none">
                             <p class="font-weight-bold mb-0 text-center">Photo Sharing. For Everyone</p>
@@ -100,7 +100,7 @@
                                             <div class="col-md-12">
                                                 <div class="checkbox">
                                                     <label>
-                                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}> 
+                                                        <input type="checkbox" name="remember" {{ old('remember') ? 'checked' : '' }}>
                                                         <span class="font-weight-bold small ml-1 text-muted">
                                                             {{ __('Remember Me') }}
                                                         </span>
@@ -135,171 +135,6 @@
                             </p>
                         </div>
                     </div>
-                </div>
-            </div>
-            <div class="section-spacer"></div>
-            <div class="row py-5 mt-5 mb-5">
-                <div class="col-12 col-md-6 d-none d-md-block">
-                    <div>
-                        <div class="row mt-4 mb-1">
-                            <div class="col-4 mt-2 px-0">
-                                <div class="px-1 shadow-none">
-                                    <img src="/_landing/1.jpeg" class="img-fluid" loading="lazy" width="640px" height="640px">
-                                </div>
-                            </div>
-                            <div class="col-4 mt-2 px-0">
-                                <div class="px-1 shadow-none">
-                                    <img src="/_landing/2.jpeg" class="img-fluid" loading="lazy" width="640px" height="640px">
-                                </div>
-                            </div>
-                            <div class="col-4 mt-2 px-0">
-                                <div class="px-1 shadow-none">
-                                    <img src="/_landing/3.jpeg" class="img-fluid" loading="lazy" width="640px" height="640px">
-                                </div>
-                            </div>
-                            <div class="col-4 mt-2 px-0">
-                                <div class="px-1 shadow-none">
-                                    <img src="/_landing/4.jpeg" class="img-fluid" loading="lazy" width="640px" height="640px">
-                                </div>
-                            </div>
-                            <div class="col-4 mt-2 px-0">
-                                <div class="px-1 shadow-none">
-                                    <img src="/_landing/5.jpeg" class="img-fluid" loading="lazy" width="640px" height="640px">
-                                </div>
-                            </div>
-                            <div class="col-4 mt-2 px-0">
-                                <div class="px-1 shadow-none">
-                                    <img src="/_landing/6.jpeg" class="img-fluid" loading="lazy" width="640px" height="640px">
-                                </div>
-                            </div>
-                            <div class="col-4 mt-2 px-0">
-                                <div class="px-1 shadow-none">
-                                    <img src="/_landing/7.jpeg" class="img-fluid" loading="lazy" width="640px" height="640px">
-                                </div>
-                            </div>
-                            <div class="col-4 mt-2 px-0">
-                                <div class="px-1 shadow-none">
-                                    <img src="/_landing/8.jpeg" class="img-fluid" loading="lazy" width="640px" height="640px">
-                                </div>
-                            </div>
-                            <div class="col-4 mt-2 px-0">
-                                <div class="px-1 shadow-none">
-                                    <img src="/_landing/9.jpeg" class="img-fluid" loading="lazy" width="640px" height="640px">
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-md-5 offset-md-1">
-                    <div class="section-spacer"></div>
-                    <div class="mt-5">
-                        <p class="text-center h1 font-weight-bold">Simple. Powerful.</p>
-                    </div>
-                    <div class="mt-5">
-                        <div class="d-flex justify-content-between align-items-center">
-                            <span class="text-center">
-                                <span class="font-weight-bold h1">{{$data['stats']['posts']}}</span>
-                                <span class="d-block text-muted text-uppercase">Posts</span>
-                            </span>
-                            <span class="text-center">
-                                <span class="font-weight-bold h1">{{$data['stats']['likes']}}</span>
-                                <span class="d-block text-muted text-uppercase">Likes</span>
-                            </span>
-                            <span class="text-center">
-                                <span class="font-weight-bold h1">{{$data['stats']['hashtags']}}</span>
-                                <span class="d-block text-muted text-uppercase">Hashtags Used</span>
-                            </span>
-                        </div>
-                    </div>
-                    <div class="mt-5">
-                        <p class="lead text-muted text-center">A free and ethical photo sharing platform.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row py-5 mb-5">
-                <div class="col-12 col-md-8 offset-md-2">
-                    <div class="section-spacer"></div>
-                    <div class="mt-5">
-                        <p class="text-center display-4 font-weight-bold">Feature Packed.</p>
-                    </div>
-                    <div class="my-2">
-                        <p class="h4 font-weight-light text-muted text-center">The best for the brightest.</p>
-                    </div>
-                </div>
-            </div>
-            <div class="row pb-5 mb-5">
-                <div class="col-12 col-md-5 offset-md-1">
-                    <div class="mb-5">
-                        <div class="media">
-                            <div class="feature-circle">
-                                <i class="far fa-images fa-lg"></i>
-                            </div>
-                            <div class="media-body">
-                                <p class="h5 font-weight-bold mt-2 mb-0">Albums</p>
-                                Create an album with up to <span class="font-weight-bold">{{config('pixelfed.max_album_length')}}</span> photos
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-5">
-                        <div class="media">
-                            <div class="feature-circle">
-                                <i class="far fa-folder fa-lg"></i>
-                            </div>
-                            <div class="media-body">
-                                <p class="h5 font-weight-bold mt-2 mb-0">Collections</p>
-                                Organize your posts
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-5">
-                        <div class="media">
-                            <div class="feature-circle">
-                                <i class="fas fa-image fa-lg"></i>
-                            </div>
-                            <div class="media-body">
-                                <p class="h5 font-weight-bold mt-2 mb-0">Filters</p>
-                                Add a filter to your photos
-                            </div>
-                        </div>
-                    </div>
-                    
-                </div>
-                <div class="col-12 col-md-5 offset-md-1">
-                    <div class="mb-5">
-                        <div class="media">
-                            <div class="feature-circle">
-                                <i class="far fa-comment fa-lg"></i>
-                            </div>
-                            <div class="media-body">
-                                <p class="h5 font-weight-bold mt-2 mb-0">Comments</p>
-                                Comment on a post, or send a reply
-                            </div>
-                        </div>
-                    </div>
-                    <div class="mb-5">
-                        <div class="media">
-                            <div class="feature-circle">
-                                <i class="far fa-list-alt fa-lg"></i>
-                            </div>
-                            <div class="media-body">
-                                <p class="h5 font-weight-bold mt-2 mb-0">Discover</p>
-                                Explore categories, hashtags and topics
-                            </div>
-                        </div>
-                    </div>
-                    @if(config('instance.stories.enabled'))
-                    <div class="mb-5">
-                        <div class="media">
-                            <div class="feature-circle">
-                                <i class="fas fa-history fa-lg"></i>
-                            </div>
-                            <div class="media-body">
-                                <p class="h5 font-weight-bold mt-2 mb-0">Stories</p>
-                                Share posts that disappear after 24h
-                            </div>
-                        </div>
-                    </div>
-                    @endif
                 </div>
             </div>
         </section>
