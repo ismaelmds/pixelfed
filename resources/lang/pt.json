@@ -58,7 +58,7 @@
     "An unexpected error ocurred": "Um erro inisperado ocorreu",
     "Uploading": "Carregando",
     "Register": "Cadastre-se",
-    "Password Reset": "Recuperar senha",
+    "Password Reset": "Esqueci minha senha",
     "Remember Me": "Lembrar",
     "About": "Sobre",
     "Help": "Ajuda",
@@ -97,8 +97,14 @@
     "Confirm": "Confirmar",
     "Privacy Settings": "Configurações de privacidade",
     "Privacy": "Privacidade",
-    "Blocked users": " Usuários bloqueados",
-    "Muted users": " Usuários silenciados",
+    "Blocked users": "Usuários bloqueados",
+    "Muted users": "Usuários silenciados",
     "Private Account": "Conta Privada",
-    "When your account is private, only people you approve can see your photos and videos on pixelfed. Your existing followers  won't be affected": "Quando sua conta é privada, somente as pessoas que você aprova como conexão, poderá ver suas fotos e vídeos"
+    "When your account is private, only people you approve can see your photos and videos on pixelfed. Your existing followers  won't be affected": "Quando sua conta é privada, somente as pessoas que você aprova como conexão, poderá ver suas fotos e vídeos",
+    "Forgot Password": "Esqueci minha senha",
+    "Account Login": "Login",
+    "Username": "Usuário",
+    "E-mail Address": "Email",
+    "Confirm Password": "Confirmar senha",
+    "I am at least 16 years old": "Sou maior de 16 anos de idade"
 }
