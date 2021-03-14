@@ -295,7 +295,9 @@
 								<div class="media-body">
 									<div class="form-group">
 										<label class="font-weight-bold text-muted small d-none">Caption</label>
-										<textarea class="form-control border-0 rounded-0 no-focus" rows="3" placeholder="Write a caption..." style="" v-model="composeText" v-on:keyup="composeTextLength = composeText.length"></textarea>
+										<vue-tribute :options="tributeSettings">
+											<textarea class="form-control border-0 rounded-0 no-focus" rows="3" placeholder="Write a caption..." style="" v-model="composeText" v-on:keyup="composeTextLength = composeText.length"></textarea>
+										</vue-tribute>
 										<p class="help-text small text-right text-muted mb-0">{{composeTextLength}}/{{config.uploader.max_caption_length}}</p>
 									</div>
 								</div>
@@ -479,9 +481,26 @@
 
 					<div v-if="page == 'visibility'" class="w-100 h-100">
 						<div class="list-group list-group-flush">
-							<div :class="'list-group-item lead cursor-pointer ' + [visibility == 'public'?'text-primary':'']" @click="toggleVisibility('public')">Public</div>
-							<div :class="'list-group-item lead cursor-pointer ' + [visibility == 'unlisted'?'text-primary':'']" @click="toggleVisibility('unlisted')">Unlisted</div>
-							<div :class="'list-group-item lead cursor-pointer ' + [visibility == 'private'?'text-primary':'']" @click="toggleVisibility('private')">Followers Only</div>
+							<div
+								v-if="!profile.locked"
+								class="list-group-item lead cursor-pointer"
+								:class="{ 'text-primary': visibility == 'public' }"
+								@click="toggleVisibility('public')">
+								Public
+							</div>
+							<div
+								v-if="!profile.locked"
+								class="list-group-item lead cursor-pointer"
+								:class="{ 'text-primary': visibility == 'unlisted' }"
+								@click="toggleVisibility('unlisted')">
+								Unlisted
+							</div>
+							<div
+								class="list-group-item lead cursor-pointer"
+								:class="{ 'text-primary': visibility == 'private' }"
+								@click="toggleVisibility('private')">
+								Followers Only
+							</div>
 						</div>
 					</div>
 
@@ -630,18 +649,21 @@ import VueCropper from 'vue-cropperjs';
 import 'cropperjs/dist/cropper.css';
 import Autocomplete from '@trevoreyre/autocomplete-vue'
 import '@trevoreyre/autocomplete-vue/dist/style.css'
+import VueTribute from 'vue-tribute'
 
 export default {
+
 	components: {
 		VueCropper,
-		Autocomplete
+		Autocomplete,
+		VueTribute
 	},
 
 	data() {
 		return {
 			config: window.App.config,
 			pageLoading: false,
-			profile: {},
+			profile: window._sharedData.curUser,
 			composeText: '',
 			composeTextLength: 0,
 			nsfw: false,
@@ -690,7 +712,39 @@ export default {
 			cameraRollMedia: [],
 			taggedUsernames: [],
 			taggedPeopleSearch: null,
-			textMode: false
+			textMode: false,
+			tributeSettings: {
+				collection: [
+					{
+						trigger: '@',
+						menuShowMinLength: 2,
+						values: (function (text, cb) {
+							let url = '/api/compose/v0/search/mention';
+							axios.get(url, { params: { q: text }})
+							.then(res => {
+								cb(res.data);
+							})
+							.catch(err => {
+								console.log(err);
+							})
+						})
+					},
+					{
+						trigger: '#',
+						menuShowMinLength: 2,
+						values: (function (text, cb) {
+							let url = '/api/compose/v0/search/hashtag';
+							axios.get(url, { params: { q: text }})
+							.then(res => {
+								cb(res.data);
+							})
+							.catch(err => {
+								console.log(err);
+							})
+						})
+					}
+				]
+			}
 		}
 	},
 
@@ -708,20 +762,19 @@ export default {
 
 	methods: {
 		fetchProfile() {
-			let self = this;
-			if(window._sharedData.curUser) {
-				self.profile = window._sharedData.curUser;
-				if(self.profile.locked == true) {
-						self.visibility = 'private';
-						self.visibilityTag = 'Followers Only';
+			if(window._sharedData.curUser.id) {
+				this.profile = window._sharedData.curUser;
+				if(this.profile.locked == true) {
+					this.visibility = 'private';
+					this.visibilityTag = 'Followers Only';
 				}
 			} else {
 				axios.get('/api/pixelfed/v1/accounts/verify_credentials').then(res => {
-					self.profile = res.data;
-					window.pixelfed.currentUser = res.data;
-					if(res.data.locked == true) {
-						self.visibility = 'private';
-						self.visibilityTag = 'Followers Only';
+					window._sharedData.currentUser = res.data;
+					this.profile = res.data;
+					if(this.profile.locked == true) {
+						this.visibility = 'private';
+						this.visibilityTag = 'Followers Only';
 					}
 				}).catch(err => {
 				});
@@ -799,6 +852,13 @@ export default {
 							self.uploading = false;
 							io.value = null;
 							swal('Banned Content', 'This content has been banned and cannot be uploaded.', 'error');
+							self.page = 2;
+						break;
+
+						case 429:
+							self.uploading = false;
+							io.value = null;
+							swal('Limit Reached', 'You can upload up to 250 photos or videos per day and you\'ve reached that limit. Please try again later.', 'error');
 							self.page = 2;
 						break;
 
